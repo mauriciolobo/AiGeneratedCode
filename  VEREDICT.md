@@ -1,5 +1,7 @@
 # Prompt
 
+Developed entirely in a browser using **GitHub Codespaces**, along with AI tools: **ChatGPT** and **GitHub Copilot**.
+
 This was all my interactions:
 
 ## AI Rules
