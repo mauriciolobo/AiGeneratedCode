@@ -1,0 +1,61 @@
+@baseUrl = http://localhost:5000
+
+### Students
+# @name students
+GET {{baseUrl}}/api/students HTTP/1.1
+Accept: application/json
+
+### Get student by ID
+GET {{baseUrl}}/api/students/{{students.response.body.students[0]._id}} HTTP/1.1
+
+### Create Student
+POST {{baseUrl}}/api/students HTTP/1.1
+Content-Type: application/json
+
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "date_of_birth": "1990-01-01",
+  "email": "john.doe@example.com",
+  "phone_number": "1234567890"
+}
+
+### Update student DOB
+PUT {{baseUrl}}/api/students/67ca530d7fd2c28e93e5124e HTTP/1.1
+Content-Type: application/json
+
+{
+  "date_of_birth": "1992-01-01"
+}
+
+
+
+### Courses
+# @name courses
+GET {{baseUrl}}/api/courses HTTP/1.1
+
+### Create Course
+POST {{baseUrl}}/api/courses HTTP/1.1
+Content-Type: application/json
+
+{
+  "course_name": "Computer Science",
+  "course_code": "CS101",
+  "description": "Introduction to Computer Science",
+  "credits": 3
+}
+
+
+### Enrollments
+@studentId = {{students.response.body.students[0]._id}}
+@courseId = {{courses.response.body.courses[0]._id}}
+
+### Create Enrollment
+POST {{baseUrl}}/api/enrollments HTTP/1.1
+Content-Type: application/json
+
+{
+  "student_id": "{{studentId}}",
+  "course_id": "{{courseId}}",
+  "enrollment_date": "2023-01-01"
+}
